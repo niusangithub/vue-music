@@ -1,20 +1,21 @@
 <template>
   <div class="singer">
-        <singer-list :data="singers"></singer-list>  
+        <list-view :data="singers" @select="selectSinger"></list-view> 
+        <router-view></router-view>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import {getSingerDetail,getSingerList} from   'api/singer'
-import SingerList from 'base/listview/listview'
+import ListView from 'base/listview/listview'
 import Singer from 'common/js/singer'
-
+import {mapMutations} from 'vuex'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 
 export default {
     components:{
-        SingerList
+        ListView
     },
     data(){
         return {
@@ -26,16 +27,26 @@ export default {
         this._getSingerDetail();
     },
     methods:{
-        _getSingerList(){
+      ...mapMutations({
+        setSinger:'SET_SINGER'
+      }),
+      selectSinger(singer){
+        //console.log('/singer/'+singer.id)
+       this.$router.push({
+          path: `/singer/${singer.id}`
+        });
+       this.setSinger(singer);
+      },
+      _getSingerList(){
            getSingerList().then((res)=>{
             this.singers = this._normalizeSinger(res.data.list);
-            console.log(this.singers)
+           // console.log(this.singers)
            });
-        },
-        _getSingerDetail(){
+      },
+      _getSingerDetail(){
 
-        },
-        _normalizeSinger(list) {
+      },
+      _normalizeSinger(list) {
       let map = {
           hot: {
             title: HOT_NAME,

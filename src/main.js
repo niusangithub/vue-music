@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VueLazy from 'vue-lazyload'
 import 'common/stylus/index.styl'
+import store from './store'
 
 // Vue.config.productionTip = false
 
@@ -17,6 +18,6 @@ Vue.use(VueLazy, {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
+  router,store,
   render: h => h(App)
 })

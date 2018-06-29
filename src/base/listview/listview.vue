@@ -8,7 +8,8 @@
                <li v-for="group in data" class="list-group" ref="listGroup">
                    <h2 class="list-group-title">{{group.title}}</h2>
                    <ul>
-                       <li v-for="item in group.items" class="list-group-item">
+                       <li v-for="item in group.items" class="list-group-item"
+                       @click="selectItem(item)">
                            <img v-lazy="item.avatar" class="avatar">
                            <span class="name">{{item.name}}</span>
                        </li>
@@ -76,7 +77,11 @@ export default {
         }
     },
     methods:{
-        //点击事件。列表
+      // 列表点击事件
+        selectItem(item){
+            this.$emit('select',item);
+        },
+        //点击事件。A-Z
         onShortCutList(e){
             let anchorIndex = getData(e.target,'index');
             let firstTouch = e.touches[0];
