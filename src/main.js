@@ -7,6 +7,10 @@ import VueLazy from 'vue-lazyload'
 import 'common/stylus/index.styl'
 import store from './store'
 
+/* eslint-disable no-new */
+import vConsole from 'vconsole'
+console.log('123')
+
 // Vue.config.productionTip = false
 
 fastclick.attach(document.body)
