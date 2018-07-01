@@ -50,8 +50,8 @@ import MusicList from 'components/music-list/music-list'
         // 请求数据
         getSingerDetail(id).then((res)=>{
             if (res.code === ERR_OK) {
-                // console.log(res.data.list)
-                this._mormalizeSongs(res.data.list);
+               this.songs= this._mormalizeSongs(res.data.list);
+               // console.log('singer-detail songs',this.songs);
             }
         })
       },
@@ -63,7 +63,7 @@ import MusicList from 'components/music-list/music-list'
                 ret.push(createSong(musicData));
             }
          });
-        // console.log(ret)
+        return ret;
       }
     }
   }

@@ -1,0 +1,20 @@
+/*
+* @Author: niusan
+* @Date:   2018-06-29 19:18:47
+* @Last Modified by:   niusan
+* @Last Modified time: 2018-07-01 08:59:11
+*/
+import * as types from  './mutation-types'
+export const selectPlay = function ({commit, state}, {list, index}) {
+  commit(types.SET_SEQUENCE_LIST, list)
+  if (state.mode === playMode.random) {
+    let randomList = shuffle(list)
+    commit(types.SET_PLAYLIST, randomList)
+    index = findIndex(randomList, list[index])
+  } else {
+    commit(types.SET_PLAYLIST, list)
+  }
+  commit(types.SET_CURRENT_INDEX, index)
+  commit(types.SET_FULL_SCREEN, true)
+  commit(types.SET_PLAYING_STATE, true) 
+}

@@ -40,7 +40,7 @@ export default {
       _getSingerList(){
            getSingerList().then((res)=>{
             this.singers = this._normalizeSinger(res.data.list);
-           // console.log(this.singers)
+           // console.log('Singer',this.singers)
            });
       },
       _getSingerDetail(){
